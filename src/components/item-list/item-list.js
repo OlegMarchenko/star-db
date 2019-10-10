@@ -8,17 +8,30 @@ export default class ItemList extends Component {
     swapiService = new SwapiService();
 
     state = {
-        peopleList: null
+        peopleList: null,
+        loading: true
     };
 
     componentDidMount() {
         this.swapiService
             .getAllPeople()
-            .then((peopleList) => {
-                this.setState({
-                    peopleList
-                })
-            });
+            .then(this.onPeopleListLoaded)
+            .catch(this.onError)
+    };
+
+    onPeopleListLoaded = (peopleList) => {
+        this.setState({
+            peopleList,
+            loading: false,
+            error: false
+        })
+    };
+
+    onError = (err) => {
+        this.setState({
+            error: true,
+            loading: false
+        })
     };
 
     renderItems(arr) {
@@ -34,7 +47,6 @@ export default class ItemList extends Component {
     }
 
     render() {
-
         const {peopleList} = this.state;
 
         if (!peopleList) {

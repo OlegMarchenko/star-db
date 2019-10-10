@@ -91,6 +91,7 @@ body {
   @include card-dflt;
   &-item {
     @include list-item;
+    cursor: pointer;
   }
 }
 
