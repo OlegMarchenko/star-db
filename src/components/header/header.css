@@ -1,3 +1,36 @@
-
+.header {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+}
+.header-logo {
+  font-size: 28px;
+  font-family: "RobotoMd", "Helvetica", sans-serif;
+  margin-right: 40px;
+}
+.header-nav ul {
+  display: flex;
+}
+.header-nav li {
+  margin-right: 25px;
+}
+.header-nav a {
+  position: relative;
+  color: #30d5c8;
+  font-size: 18px;
+}
+.header-nav a::after {
+  position: absolute;
+  content: "";
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: transparent;
+  transition: 0.2s all;
+}
+.header-nav a:hover::after {
+  background-color: #30d5c8;
+}
 
 /*# sourceMappingURL=header.css.map */

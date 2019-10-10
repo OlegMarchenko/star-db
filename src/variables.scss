@@ -1,7 +1,67 @@
-
 // colors
-$bg: #222;
+$primary: #30d5c8;
+$tomato: tomato;
+$bg: #151515;
+$bg-card: lighten($bg, 5%);
+$border-cl: lighten($bg, 15%);
+
+// font-sizes
+$fz-sm: 18px;
+$fz-title: 22px;
 
 // fonts
 $roboto: 'Roboto', 'Helvetica', sans-serif;
 $roboto-md: 'RobotoMd', 'Helvetica', sans-serif;
+
+// radius
+$r-5: 5px;
+$r-10: 10px;
+
+// transition
+$trnstn: .2s all;
+
+// mixins
+@mixin abs-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin card-wrap {
+  display: flex;
+  position: relative;
+  @include card-dflt;
+  &-image {
+    width: 200px;
+    margin-right: 30px;
+    > img {
+      width: inherit;
+      border-radius: $r-10;
+    }
+  }
+  &-desc {
+    width: 100%;
+    &-item {
+      @include list-item;
+    }
+    &-key {
+      margin-right: 5px;
+    }
+  }
+}
+
+@mixin card-dflt {
+  padding: 20px;
+  background: $bg-card;
+  border-radius: $r-5;
+}
+
+@mixin list-item {
+  border-bottom: 1px solid $border-cl;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

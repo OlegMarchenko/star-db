@@ -17,14 +17,99 @@
   font-style: normal;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
+}
+
+h2 {
+  font-size: $fz-title;
+  margin-bottom: 20px;
+}
+
 body {
-  font: 18px/1.2 $roboto;
+  font: 16px/1.2 $roboto;
   margin: 0;
   color: #fff;
+  background: $bg;
 }
 
 .app {
-  background: $bg;
-  width: 100vw;
-  height: 100vh;
+  display: grid;
+  grid-template-areas:
+      "header header"
+      "random random"
+      "list details";
+  grid-template-rows: 68px auto;
+  grid-template-columns: 50% 50%;
+  grid-gap: 15px;
+  max-width: 1140px;
+  padding: 0 30px;
+  margin: 0 auto;
 }
+
+// grid layout components
+.header {
+  grid-area: header;
+}
+.random-item {
+  grid-area: random;
+  min-height: 204px;
+}
+
+.list {
+  grid-area: list;
+}
+
+.details-items {
+  grid-area: details;
+}
+
+
+
+// default card
+.card {
+  @include card-wrap;
+}
+
+// default list item
+.list {
+  @include card-dflt;
+  &-item {
+    @include list-item;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
