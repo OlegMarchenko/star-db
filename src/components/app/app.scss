@@ -49,45 +49,26 @@ body {
 }
 
 .app {
-  display: grid;
-  grid-template-areas:
-      "header header"
-      "random random"
-      "list details";
-  grid-template-rows: 68px auto;
-  grid-template-columns: 50% 50%;
   grid-gap: 15px;
   max-width: 1140px;
   padding: 0 30px;
   margin: 0 auto;
 }
 
-// grid layout components
-.header {
-  grid-area: header;
-}
-.random-item {
-  grid-area: random;
-  min-height: 204px;
-}
-
-.list {
-  grid-area: list;
-}
-
-.details-items {
-  grid-area: details;
-}
-
-
-
 // default card
 .card {
   @include card-wrap;
 }
 
+.random-item {
+  min-height: 244px;
+  margin-bottom: 16px;
+}
+
 // default list item
 .list {
+  position: relative;
+  min-height: 352px;
   @include card-dflt;
   &-item {
     @include list-item;

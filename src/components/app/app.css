@@ -42,31 +42,10 @@ body {
 }
 
 .app {
-  display: grid;
-  grid-template-areas: "header header" "random random" "list details";
-  grid-template-rows: 68px auto;
-  grid-template-columns: 50% 50%;
   grid-gap: 15px;
   max-width: 1140px;
   padding: 0 30px;
   margin: 0 auto;
-}
-
-.header {
-  grid-area: header;
-}
-
-.random-item {
-  grid-area: random;
-  min-height: 204px;
-}
-
-.list {
-  grid-area: list;
-}
-
-.details-items {
-  grid-area: details;
 }
 
 .card {
@@ -88,9 +67,10 @@ body {
   width: 100%;
 }
 .card-desc-item {
+  display: flex;
+  align-items: center;
+  height: 32px;
   border-bottom: 1px solid #3b3b3b;
-  padding-bottom: 8px;
-  margin-bottom: 8px;
 }
 .card-desc-item:last-child {
   margin-bottom: 0;
@@ -99,15 +79,23 @@ body {
   margin-right: 5px;
 }
 
+.random-item {
+  min-height: 244px;
+  margin-bottom: 16px;
+}
+
 .list {
+  position: relative;
+  min-height: 352px;
   padding: 20px;
   background: #222222;
   border-radius: 5px;
 }
 .list-item {
+  display: flex;
+  align-items: center;
+  height: 32px;
   border-bottom: 1px solid #3b3b3b;
-  padding-bottom: 8px;
-  margin-bottom: 8px;
   cursor: pointer;
 }
 .list-item:last-child {

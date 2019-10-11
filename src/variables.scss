@@ -58,9 +58,10 @@ $trnstn: .2s all;
 }
 
 @mixin list-item {
+  display: flex;
+  align-items: center;
+  height: 32px;
   border-bottom: 1px solid $border-cl;
-  padding-bottom: 8px;
-  margin-bottom: 8px;
   &:last-child {
     margin-bottom: 0;
   }
