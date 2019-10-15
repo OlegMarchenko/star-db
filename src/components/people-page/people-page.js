@@ -4,7 +4,7 @@ import ItemList from "../item-list";
 import PersonDetails from "../person-details";
 import ErrorIndicator from "../error-indicator";
 import SwapiService from "../../services/swapi-service";
-import ErrorBoundry from "../error-boundry";
+import ErrorBoundary from "../error-boundary";
 
 export default class PeoplePage extends Component {
 
@@ -27,7 +27,7 @@ export default class PeoplePage extends Component {
         }
         const {selectedPerson} = this.state;
         return (
-            <ErrorBoundry>
+            <ErrorBoundary>
                 <div className="people-page">
                     <ItemList
                         OnItemSelected={this.onPersonSelected}
@@ -36,7 +36,7 @@ export default class PeoplePage extends Component {
                             `${name} (${birthYear})`)}/>
                     <PersonDetails personId={selectedPerson}/>
                 </div>
-            </ErrorBoundry>
+            </ErrorBoundary>
         )
     }
 };
