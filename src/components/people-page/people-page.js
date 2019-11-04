@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './people-page.css'
 import ItemList from "../item-list";
 import PersonDetails from "../person-details";
+import Row from "../row";
 import ErrorIndicator from "../error-indicator";
 import SwapiService from "../../services/swapi-service";
 import ErrorBoundary from "../error-boundary";
@@ -26,16 +27,24 @@ export default class PeoplePage extends Component {
             return <ErrorIndicator/>
         }
         const {selectedPerson} = this.state;
+
+        const itemList = (
+            <ItemList
+                OnItemSelected={this.onPersonSelected}
+                getData={this.swapiService.getAllPeople}>
+                {(i) => (
+                    `${i.name} (${i.birthYear})`
+                )}
+            </ItemList>
+        );
+
+        const personDetails = (
+            <PersonDetails personId={selectedPerson}/>
+        );
+
         return (
             <ErrorBoundary>
-                <div className="people-page">
-                    <ItemList
-                        OnItemSelected={this.onPersonSelected}
-                        getData={this.swapiService.getAllPeople}
-                        renderItems={({name, birthYear}) => (
-                            `${name} (${birthYear})`)}/>
-                    <PersonDetails personId={selectedPerson}/>
-                </div>
+                <Row left={itemList} right={personDetails}/>
             </ErrorBoundary>
         )
     }

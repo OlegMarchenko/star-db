@@ -5,7 +5,6 @@ import './item-list.css'
 
 export default class ItemList extends Component {
 
-
     state = {
         itemList: null,
         loading: true
@@ -35,11 +34,11 @@ export default class ItemList extends Component {
         })
     };
 
-    renderItems = (arr) => {
+    renderItems(arr) {
         return arr.map((item) => {
 
             const {id} = item;
-            const label = this.props.renderItems(item);
+            const label = this.props.children(item);
 
             return (
                 <li className="list-item"
@@ -69,3 +68,4 @@ export default class ItemList extends Component {
         )
     }
 };
+

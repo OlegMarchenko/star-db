@@ -3,6 +3,9 @@ import React, {Component} from 'react';
 import Header from "../header";
 import RandomPlanet from "../random-planet";
 import PeoplePage from "../people-page";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import ErrorBoundary from "../error-boundary";
+import PersonDetails from "../person-details";
 
 import './app.css'
 
@@ -10,13 +13,23 @@ import './app.css'
 export default class App extends Component {
 
     render() {
-
         return (
-            <div className="app">
-                <Header/>
-                <RandomPlanet/>
-                <PeoplePage />
-            </div>
+            <ErrorBoundary>
+                <Router>
+                    <div className="app">
+                        <Header/>
+                        <RandomPlanet/>
+                        <Route path="/"
+                               render={() => <h2>Welcome to StarDB</h2>}
+                               exact/>
+
+                        <Route path="/people/" exact component={PeoplePage}/>
+                        <Route path="people/:id"
+                               render={() => <PersonDetails/>}/>
+                    </div>
+
+                </Router>
+            </ErrorBoundary>
         );
     };
 };
