@@ -1,10 +1,19 @@
 import React, {Component} from 'react';
-import './people-page.css'
-import ItemList from "../item-list";
-import PersonDetails from "../person-details";
 import Row from "../row";
-import ErrorIndicator from "../error-indicator";
 import SwapiService from "../../services/swapi-service";
+import ItemList from "../item-list";
+import ItemDetails, {Record} from "../item-details/item-details";
+
+import {
+    PersonDetails,
+    PlanetDetails,
+    StarshipDetails,
+    PersonList,
+    PlanetList,
+    StarshipList
+} from '../sw-components';
+
+import './people-page.css'
 import ErrorBoundary from "../error-boundary";
 
 export default class PeoplePage extends Component {
@@ -23,15 +32,18 @@ export default class PeoplePage extends Component {
 
     render() {
 
-        if (this.state.hasError) {
-            return <ErrorIndicator/>
-        }
         const {selectedPerson} = this.state;
+        const { getPerson,
+            getStarship,
+            getPersonImage,
+            getStarshipImage,
+            getAllPeople,
+            getAllPlanets } = this.swapiService;
 
         const itemList = (
             <ItemList
-                OnItemSelected={this.onPersonSelected}
-                getData={this.swapiService.getAllPeople}>
+                getData={getAllPeople}
+                onItemSelected={this.onPersonSelected}>
                 {(i) => (
                     `${i.name} (${i.birthYear})`
                 )}
@@ -39,12 +51,30 @@ export default class PeoplePage extends Component {
         );
 
         const personDetails = (
-            <PersonDetails personId={selectedPerson}/>
+            <ItemDetails
+                itemId={selectedPerson}
+                getData={getPerson}
+                getImageUrl={getPersonImage}>
+
+                <Record field="gender" label="Gender"/>
+                <Record field="eyeColor" label="Eye Color"/>
+
+            </ItemDetails>
         );
 
         return (
             <ErrorBoundary>
-                <Row left={itemList} right={personDetails}/>
+                <PersonDetails itemId={11} />
+
+                <PlanetDetails itemId={5} />
+
+                <StarshipDetails itemId={9} />
+
+                <PersonList />
+
+                <StarshipList />
+
+                <PlanetList />
             </ErrorBoundary>
         )
     }

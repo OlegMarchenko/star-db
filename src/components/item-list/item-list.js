@@ -1,71 +1,30 @@
-import React, {Component} from 'react';
-import Spinner from "../spinner";
-import ErrorIndicator from "../error-indicator";
-import './item-list.css'
+import React from 'react';
 
-export default class ItemList extends Component {
+import './item-list.css';
 
-    state = {
-        itemList: null,
-        loading: true
-    };
+const ItemList = (props) => {
 
-    componentDidMount() {
+    const {data, onItemSelected, children: renderLabel} = props;
 
-        const {getData} = this.props;
-
-        getData()
-            .then(this.onItemListLoaded)
-            .catch(this.onError)
-    };
-
-    onItemListLoaded = (itemList) => {
-        this.setState({
-            itemList,
-            loading: false,
-            error: false
-        })
-    };
-
-    onError = (err) => {
-        this.setState({
-            error: true,
-            loading: false
-        })
-    };
-
-    renderItems(arr) {
-        return arr.map((item) => {
-
-            const {id} = item;
-            const label = this.props.children(item);
-
-            return (
-                <li className="list-item"
-                    key={id}
-                    onClick={() => this.props.OnItemSelected(id)}>
-                    {label}
-                </li>
-            )
-        })
-    };
-
-    render() {
-        
-        const {itemList, loading, error} = this.state;
-
-        const hasData = !(loading || error);
-        const errorMessage = error ? <ErrorIndicator/> : null;
-        const spinner = loading ? <Spinner/> : null;
-        const content = hasData ? this.renderItems(itemList) : null;
+    const items = data.map((item) => {
+        const {id} = item;
+        const label = renderLabel(item);
 
         return (
-            <ul className="list">
-                {errorMessage}
-                {spinner}
-                {content}
-            </ul>
+            <li className="list-item"
+                key={id}
+                onClick={() => onItemSelected(id)}>
+                {label}
+            </li>
         )
-    }
+    });
+
+    return (
+        <ul className="list">
+            {items}
+        </ul>
+    )
 };
 
+
+export default ItemList;
