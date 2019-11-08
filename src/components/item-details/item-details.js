@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import './item-details.css';
 
-const Record = ({item, field, label}) => {
+const Record = ({ item, field, label }) => {
     return (
         <li className="card-desc-item">
             <span className="card-desc-key">{label}:</span>
@@ -27,14 +27,14 @@ export default class ItemDetails extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.itemId !== prevProps.itemId) {
+        if(this.props.itemId !== prevProps.itemId) {
             this.updateItem();
         }
     }
 
     updateItem = () => {
-        const {itemId, getData, getImageUrl} = this.props;
-        if (!itemId) {
+        const { itemId, getData, getImageUrl } = this.props;
+        if(!itemId) {
             return;
         }
 
@@ -49,12 +49,12 @@ export default class ItemDetails extends Component {
 
     render() {
 
-        const {item, image} = this.state;
-        if (!item) {
+        const { item, image } = this.state;
+        if(!item) {
             return <span>Select a person form a list</span>
         }
 
-        const {name} = item;
+        const { name } = item;
 
         return (
             <div className="details-items card">
@@ -66,7 +66,7 @@ export default class ItemDetails extends Component {
                     <ul>
                         {
                             React.Children.map(this.props.children, (child) => {
-                                return React.cloneElement(child, {item});
+                                return React.cloneElement(child, { item });
                             })
                         }
                     </ul>
